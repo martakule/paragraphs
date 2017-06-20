@@ -1,0 +1,355 @@
+/*GLOBAL FOR ALL ACTIVITIES*/
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  font-family: 'Ubuntu', Tahoma, Geneva, sans-serif;
+  line-height: 1.4;
+/*  border:solid 1px red;*/
+}
+
+body {
+  background-color: #f0f7fd;
+}
+p {
+  margin: .5em 0;
+}
+
+textarea, input[type="text"] {
+  border:solid 1px #3d9ed8;
+  border-radius: 3px;
+  display: block;
+  margin: 5px 0;
+  height: 1.7em;
+}
+textarea {
+  min-width:400px;
+}
+
+input[name="q"] {
+  min-width: 50%;
+}
+
+.wrapper {
+  max-width: 1100px;
+  margin:auto;
+}
+
+.bold {
+  font-weight: 500;
+  color: #008cff;
+}
+
+/*--Colors and containers for the stylized header and footer--*/
+.mainColor {
+  float:left;
+  background-color: #59b9ea;
+  width: 75%;
+}
+
+.darker {
+  float:left;
+  background-color: #3d9ed8;
+  width: 15%;
+}
+
+.lighter {
+  float:left;
+  background-color: #b4dff8;
+  width: 10%;
+}
+
+.header, .footer {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%
+}
+
+.footer {
+  flex-direction: row-reverse;
+}
+
+.footer .mainColor {
+  width: 10%;
+}
+
+.footer .darker {
+  width: 15%;
+}
+
+.footer .lighter {
+  width:75%;
+}
+
+/*--Headers in text--*/
+h1 {
+  margin:0;
+  padding: 5px 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+h2 {
+  color: #008bd2;
+  margin: 7px 0;
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/*--Links--*/
+
+a {
+  font-weight: bold;
+  color: #008bd2;
+  text-decoration: none;
+}
+
+a:hover {
+  color:white;
+  background: linear-gradient(to right, #59b9ea, #2e7baa);
+  border-radius: 5px;
+  padding: 1px 3px;
+}
+
+/*--Slide visibility for one-page navigation--*/
+.slide {
+  padding: 0 15px;
+  display: none;
+}
+
+/*--All buttons--*/
+button {
+  background-color: #008bd2;
+  color:white;
+  display: inline-block;
+  margin:7px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  border:none;
+  font-size:1em;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+/*--Navigation buttons--*/
+#navButtons {
+  height: 38px;
+}
+
+#navButtons.first #back {
+  display: none;
+}
+
+#navButtons.last #next {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+li {
+  font-size: 1em;
+  margin:0;
+}
+
+li + p {
+  margin-top: .3em;
+}
+
+/*-- Container and buttons for Showing/Hiding answers --*/
+.question {
+  border:solid 1px #3d9ed8;
+  border-radius:5px;
+  padding: 0 5px 5px 5px;
+  margin: 15px 0;
+}
+
+.answer {
+  display: none;
+  overflow: hidden;
+}
+
+.answer_button {
+  margin:0;
+  background-color: #3d9ed8;
+}
+
+/*-- Radio buttons and their labels stay in line--*/
+
+input[type="radio"] {
+  float: left;
+}
+
+label {
+  display: block;
+}
+
+label + li {
+  margin-top: 1.2em;
+}
+
+/* -- Drag'n'drop for 03 Communication Collaboration -- */
+
+.drag_n_drop {
+  border: 1px #3d9ed8 solid;
+  border-radius: 5px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  float: left;
+  margin: 1%;
+  list-style-type: none;
+  overflow: hidden;
+  font-size: 0.8em;
+  width:23%;
+}
+
+.heading {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.item span {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 5px;
+}
+.drag_n_drop li {
+  min-height: 30px;
+  display: block;
+  border: 1px solid;
+  margin: 5px 0;
+  border-radius: 5px;
+  text-align: center;
+  cursor:move;
+}
+.drag_n_drop ul {
+  display: block;
+  margin: 5px 0;
+  width: 100%;
+  min-height: 200px;
+  padding: 0;
+  list-style-type: none;
+}
+
+div[data-cat='pro'] .heading {
+  background-color: #c0ff9e;
+}
+div[data-cat='pro'] li {
+  background-color: #e6ffd8;
+  border-color: #7bd24c;
+}
+div[data-cat='con'] .heading {
+  background-color: #ffb8b8;
+}
+div[data-cat='con'] li {
+  background-color: #ffdada;
+  border-color: #f77a7a;
+}
+
+.match_controls {
+  text-align: left;
+  width: 100%;
+  clear: both;
+  margin-right: 20px;
+  font-family: sans-serif;
+}
+.match_results {
+  margin-left: 15px;
+  display: none;
+  color: #008bd2;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.check_results {
+  box-shadow: 2px 2px 2px black;
+  font-size: 1.2em;
+}
+
+.correct, .total {
+  font-weight: bold;
+}
+
+/* -- Draggins and sorting for 06 Paragraphy Pile-up -- */
+
+.tiles ul {
+  padding: 0 0 7px 0;
+}
+
+.tiles li {
+  min-height: 30px;
+  display: block;
+  background-color: #e3f4fd;
+  border: 1px solid #008bd2;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor:move;
+}
+
+.tiles span {
+  padding: 2px 5px;
+  display: block;
+}
+
+li.red {
+  background-color: #ffdada;
+  border-color: #f77a7a;
+}
+
+li.green {
+  background-color: #e6ffd8;
+  border-color: #7bd24c;
+}
+
+ul.disabled li {
+  cursor:default;
+}
+
+/*--Class used to show all kinds of elements across pages,
+  at the end to override all other display instructions--*/
+.show {
+  display: block;
+}
+/*--Media Queries--*/
+
+@media (max-width: 550px) {
+  textarea, input[type="text"] {
+  min-width: 100%;
+  }
+
+  .drag_n_drop {
+  	width: 48%;
+  }
+
+  .tiles ul {
+  width: 100%;
+}
+
+@media (-moz-touch-enabled: 1), (pointer:coarse) {
+    .tiles li {
+        cursor:default;
+    }
+    .drag_n_drop li {
+        cursor:default;
+    }
+}
+
