@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -24,7 +24,7 @@
 		<p>In this quiz, you will answer a series of questions that will help you to discover how you communicate. When answering these questions, try to think of how you would answer in a professional environment. There are no wrong answers, so be honest!</p>
 	</div>
 
-	<div class="slide">
+	<div class="slide" id="quiz">
 		<form id="communication">
 		<ol>
 			<li>I feel guilty if I leave on time for a valid reason and other people are still working.</li>
@@ -177,13 +177,14 @@
 
 		<div id="results" class="slide">
 			<p>Great! You’ve completed the quiz. Before we find out how you communicate, let’s review the four different styles of communication.<br>The chart below shows two parts to communication style: how <span class="bold">direct</span> we are and how <span class="bold">thoughtful</span> we are.</p>
-			<img src="communication_styles.png" style="margin: 1em 0;">
+						<img src="images/communication_styles.png" style="margin: 1em 0;">
 			<p>Some people can be very direct in expressing what they want or think, while others might simply imply their feelings. Likewise, people can be very thoughtful and consider what other people might want or need, while others may ignore this completely. Most people will find themselves to be a combination of the different styles.</p>
 			<p>Now let’s have a look at your scores!</p>
 	</div>
 
 	<div class="slide">
 		<h2>Your Communication Style</h2>
+		<p>The bars represent the proportions of each communication style relative to your total score. (With one percentage point margin of error.)</p>
 		<div id="graph">
 
 			<div class="chartUnit">
@@ -208,10 +209,7 @@
 
 		</div>
 
-	</div>
-
-	<div class="slide">
-		<p>What was your highest score? This score reflects the communication style you use most of the time when in a working environment. It’s also worth noting your next highest score, especially if it’s only a one- or two-point difference.</p>
+		<p>What is your highest score? This score reflects the communication style you use most of the time when in a working environment. It’s also worth noting your next highest score, especially if it’s only a small difference.</p>
 		<p>If you are an <span class="bold"> Aggressive </span>communicator, you are direct in expressing needs, wants, and opinions, with little thought for other people’s needs, wants, or opinions.</p>
 		<p>If you are a <span class="bold"> Passive Aggressive </span>communicator, you make sure people are aware of your needs, wants, and opinions, but in an indirect way, and with little thought for other people’s needs, wants, or opinions.</p>
 		<p>If you are a <span class="bold"> Passive </span>communicator, you don’t express your needs, wants, and opinions, putting other people’s wants, needs, and opinions above your own.</p>
@@ -233,7 +231,13 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function(){			
+		$(document).ready(function(){	
+
+			// Remove "next" button from quiz slide to force form submission before continuing
+			$("#next").on("click", function(){
+				if ($("#quiz").hasClass("show")){$(this).addClass("hide")}
+			});
+
 			$("#answers").on("click", function(e){
 				e.preventDefault();
 				// Check if all questions are answered
@@ -244,10 +248,10 @@
 					// Get all values from the form
 					// Count how many there are for each option
 					var answers = $("#communication").serializeArray(),
-							aggressive = 13,
-							passiveAggressive = 19,
-							passive = 24,
-							assertive = 7;
+							aggressive = 0,
+							passiveAggressive = 0,
+							passive = 0,
+							assertive = 0;
 
 					for (var i = 0; i < answers.length; i++) {
 						switch (answers[i].value) {
@@ -280,18 +284,20 @@
 
 					alert("Thanks! Your answers have been saved. Click OK to continue.");
 					$(".show").removeClass("show").next(".slide").addClass("show");
+					$("#next").removeClass("hide");
 					console.log("aggressive: " + aggressive + " passiveAggressive: " + passiveAggressive + " passive: " + passive + " assertive: " + 							assertive);
 
 					// Calculate size of each bar: percentage of total score
 					function barSize(x) {
 						var total = aggressive + passiveAggressive + passive + assertive;
-						return Math.floor( (x/total)*100 );
+						return Math.round( (x/total)*100 );
+						console.log(Math.round( (x/total)*100 ));
 					}
 
-					$("#aggressive").css("width", barSize(aggressive)+'%').html(barSize(aggressive).toString()+'%');
-					$("#passiveAggressive").css("width", barSize(passiveAggressive)+'%').html(barSize(passiveAggressive)+'%');
-					$("#passive").css("width", barSize(passive)+'%').html(barSize(passive)+'%');
-					$("#assertive").css("width", barSize(assertive)+'%').html(barSize(assertive)+'%');
+					$("#aggressive").css("width", (barSize(aggressive)*1.7)+'%').html(barSize(aggressive).toString()+'%');
+					$("#passiveAggressive").css("width", (barSize(passiveAggressive)*1.7)+'%').html(barSize(passiveAggressive)+'%');
+					$("#passive").css("width", (barSize(passive)*1.7)+'%').html(barSize(passive)+'%');
+					$("#assertive").css("width", (barSize(assertive)*1.7)+'%').html(barSize(assertive)+'%');
 				}
 
 			});
