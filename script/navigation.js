@@ -9,11 +9,13 @@ $(function() {
   $("#next").on('click',function(){
     var active = $(".slide.show");
     active.removeClass('show').next('.slide').addClass('show');
+    $('html,body').scrollTop(0);
     updateView();
   });
   
   $("#back").on('click',function(){
     $(".slide.show").removeClass('show').prev('.slide').addClass('show');
+    $('html,body').scrollTop(0);
     updateView();
   });
 
