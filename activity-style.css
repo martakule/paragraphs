@@ -10,7 +10,7 @@ html {
 * {
   font-family: 'Ubuntu', Tahoma, Geneva, sans-serif;
   line-height: 1.4;
-/*  border:solid 1px red;*/
+/*  border:solid 1px black;*/
 }
 
 body {
@@ -202,6 +202,65 @@ label + li {
   margin-top: 1.2em;
 }
 
+/*-- bar chart made of divs for 01 How Do You Communicate --*/
+
+#graph {
+  width:100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartUnit {
+  width: 100%;
+/*  border-color: red;*/
+  display: flex;
+  flex-direction: row;
+}
+
+.label {
+  width: 100px;
+  height: 50px;
+  text-align: right;
+  vertical-align: middle;
+  float: left;
+  margin: 5px 0;
+  padding: 14px;
+}
+
+.bar {
+  float: right;
+  width:1px;
+  height: 50px;
+  margin: 5px 0;
+  padding: 14px;
+  box-shadow: 5px 5px 5px darkgrey; 
+  color:white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+#specialCase {
+  padding-top: 3px;
+}
+
+#aggressive {
+  background:linear-gradient(to right, #753a88,#cc2b5e);
+  width:7%;
+}
+#passiveAggressive {
+  background:linear-gradient(to right, #e65c00, #F9D423);
+  width:23%;
+}
+#passive {
+  background:linear-gradient(to right, yellowgreen, yellow);
+  width:44%;
+}
+#assertive {
+  background:linear-gradient(to right, #007991, #78ffd6);
+  width:26%;
+}
+
 /* -- Drag'n'drop for 03 Communication Collaboration -- */
 
 .drag_n_drop {
@@ -324,8 +383,12 @@ ul.disabled li {
   cursor:default;
 }
 
-/*--Class used to show all kinds of elements across pages,
+/*--Classes used to show and hide all kinds of elements across pages,
   at the end to override all other display instructions--*/
+.hide {
+  display: none;
+}
+
 .show {
   display: block;
 }
