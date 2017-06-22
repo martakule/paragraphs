@@ -294,10 +294,10 @@
 						console.log(Math.round( (x/total)*100 ));
 					}
 
-					$("#aggressive").css("width", (barSize(aggressive)*1.6)+'%').html(barSize(aggressive).toString()+'%');
-					$("#passiveAggressive").css("width", (barSize(passiveAggressive)*1.6)+'%').html(barSize(passiveAggressive)+'%');
-					$("#passive").css("width", (barSize(passive)*1.6)+'%').html(barSize(passive)+'%');
-					$("#assertive").css("width", (barSize(assertive)*1.6)+'%').html(barSize(assertive)+'%');
+					$("#aggressive").css("width", barSize(aggressive)+'%').html(barSize(aggressive).toString()+'%');
+					$("#passiveAggressive").css("width", barSize(passiveAggressive)+'%').html(barSize(passiveAggressive)+'%');
+					$("#passive").css("width", barSize(passive)+'%').html(barSize(passive)+'%');
+					$("#assertive").css("width", barSize(assertive)+'%').html(barSize(assertive)+'%');
 				}
 
 			});
