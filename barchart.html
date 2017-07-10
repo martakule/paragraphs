@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marta Kule | Bar Chart</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500" rel="stylesheet">
+  <link rel="stylesheet" href="activity-style.css">
+  <script src="script/jquery-1.7.2.min.js"></script>
+	<script src="script/navigation.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+	<div class="header">
+	<div class="mainColor">
+		<h1>Bar Chart</h1>
+	</div>
+		<div class="darker"></div>
+		<div class="lighter"></div>
+	</div>
+
+	<div class="slide show">
+		<p>I made this bar chart originally to dispaly results of a quiz that measured four aspects of a user's communication style. It takes the total of four values and shows them as percentages.</p>
+		<p>Enter positive decimal numbers to see it in action:</p>
+
+		<form id="input-form" class="graph">
+
+			<div class="labels">
+				<div class="label">First Value</div>
+				<div class="label">Second Value</div>
+				<div class="label">Third Value</div>
+				<div class="label">Fourth Value</div>
+			</div>
+
+			<div class="bars">
+
+				<div class="unit">
+					<input type="text" id="one">
+				</div>
+
+				<div class="unit">
+					<input type="text" id="two">
+				</div>
+
+				<div class="unit">
+					<input type="text" id="three">
+				</div>
+
+				<div class="unit">
+					<input type="text" id="four">
+				</div>
+			</div>
+		</form>
+
+		<button id="generate">Generate the Chart</button>
+
+	<h2>Your Results</h2>
+
+	<div class="graph">
+
+			<div class="labels">
+				<div class="label">First Value</div>
+				<div class="label">Second Value</div>
+				<div class="label">Third Value</div>
+				<div class="label">Fourth Value</div>
+			</div>
+
+			<div class="bars">
+
+	      <div class="unit">
+	        <div class="bar" id="first">7%</div>
+	        <span></span>
+	      </div>
+
+	      <div class="unit">
+	        <div class="bar" id="second">23%</div>
+	        <span></span>
+	      </div>
+
+	      <div class="unit">
+	        <div class="bar" id="third">44%</div>
+	        <span></span>
+	      </div>
+
+	      <div class="unit">
+	        <div class="bar" id="fourth">26%</div>
+	        <span></span>
+	      </div>
+
+				<div class="scale">
+					<div>0</div>
+					<div>25</div>
+					<div>50</div>
+					<div id="end">
+						<span>75</span>
+						<span>100</span>
+					</div>
+				</div>
+
+				</div>
+		</div>
+	</div>
+
+	<div class="footer">
+	<div class="mainColor"></div>
+	<div class="darker"></div>
+	<div class="lighter">
+		<div id="navButtons"><button id="back">Back</button> <button id="next">Next</button></div>
+	</div>
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$("#generate").on("click", function(e){
+				e.preventDefault();
+
+				$('.wrong').remove();
+				$(".wrongInput").removeClass("wrongInput");
+
+				var numbers = $("#input-form").find("input"),
+						values = {
+						"first":0,
+						"second":0,
+						"third":0,
+						"fourth":0
+					},
+						valueList = [],
+						validator = 0;
+
+				for (var i = 0; i < numbers.length; i++) {
+					var userInput = numbers[i].value;
+					var id = numbers[i].id;
+
+					if (isNaN(userInput) || userInput < 0 || userInput.length == 0){
+						$("#"+id).addClass("wrongInput").parent().append("<p class='wrong'>Pick a positive decimal number</p>");
+					}
+					else {
+						validator++;
+						valueList.push(userInput);
+					}
+				}
+
+				if (validator === numbers.length){
+
+
+					$(".smallBar").removeClass("smallBar");
+					$(".outsideText").removeClass("outsideText");
+
+					values.first = valueList[0];
+					values.second = valueList[1];
+					values.third = valueList[2];
+					values.fourth = valueList[3];
+
+					console.log(validator);
+				// Add up values of all answers
+			  var total = 0;
+			  for (var key in values) {
+			    if( values.hasOwnProperty(key) ) {
+			    	total = total + +values[key]
+			   	}
+
+		  	for (var key in values) {
+			    if( values.hasOwnProperty(key) ) {
+			    	var size = Math.round( (values[key]/total)*100 );
+	          var text = size.toString()+'%';
+
+					if (size<=7){
+	           $("#"+key).empty().css("width", size+'%').addClass("smallBar").next("span").addClass("outsideText").html(text);
+						}
+						 else {
+							$("#"+key).css("width", size+'%').html(text);
+						}
+			    }
+
+			  }
+
+				}
+			}
+		});
+
+
+
+		});
+
+	</script>
+
+</body>
+</html>
