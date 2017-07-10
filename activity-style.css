@@ -14,18 +14,18 @@ html {
 }
 
 body {
-  background-color: #f0f7fd;
+  background-color: #ebebe1;
 }
 p {
   margin: .5em 0;
 }
 
 textarea, input[type="text"] {
-  border:solid 1px #3d9ed8;
+  border:solid 1px #808285;
   border-radius: 3px;
   display: block;
   margin: 5px 0;
-  height: 1.7em;
+  height: 2em;
 }
 textarea {
   min-width:400px;
@@ -48,19 +48,19 @@ input[name="q"] {
 /*--Colors and containers for the stylized header and footer--*/
 .mainColor {
   float:left;
-  background-color: #59b9ea;
+  background-color: #df0029;
   width: 75%;
 }
 
 .darker {
   float:left;
-  background-color: #3d9ed8;
+  background-color: #a9001f;
   width: 15%;
 }
 
 .lighter {
   float:left;
-  background-color: #b4dff8;
+  background-color: #f63e5f;
   width: 10%;
 }
 
@@ -98,7 +98,7 @@ h1 {
 }
 
 h2 {
-  color: #008bd2;
+  color: #df0029;
   margin: 7px 0;
   font-size: 1.4em;
 }
@@ -132,7 +132,7 @@ a:hover {
 
 /*--All buttons--*/
 button {
-  background-color: #008bd2;
+  background-color: #a9001f;
   color:white;
   display: inline-block;
   margin:7px;
@@ -170,6 +170,11 @@ li + p {
   margin-top: .3em;
 }
 
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 /*-- Container and buttons for Showing/Hiding answers --*/
 .question {
   border:solid 1px #3d9ed8;
@@ -204,62 +209,144 @@ label + li {
 
 /*-- bar chart made of divs for 01 How Do You Communicate --*/
 
-#graph {
+#input-form input[type="text"] {
+  height: 50px;
+  width: 100px;
+  font-size: 2em;
+  color: #565656;
+}
+
+#input-form {
+  border: none;
+}
+
+#generate {
+  margin-left: 40%;
+  padding: 10px;
+}
+
+input.wrongInput {
+  border: 2px solid #cc2b5e;
+  box-shadow: 0 0 5px #cc2b5e;
+}
+
+.wrong {
+ display: block;
+ padding:12px;
+ color:#cc2b5e;'
+}
+
+.graph {
   width:100%;
   margin: 1em 0;
   padding: 10px 0;
   display: flex;
-  flex-direction: column;
-  border:solid 1px #3d9ed8;
+  flex-flow: row nowrap;
+  border:solid 1px #808285;
   border-radius:5px;
 }
 
-.chartUnit {
-  width: 100%;
-/*  border-color: red;*/
+.labels {
   display: flex;
-  flex-direction: row;
+  flex-flow: column nowrap;
 }
 
 .label {
-  width: 100px;
+  width: 70px;
   height: 50px;
   text-align: right;
   vertical-align: middle;
   float: left;
   margin: 5px 0;
-  padding: 14px;
+  padding: 3px 7px;
+}
+.bars {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
 }
 
+.unit {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.unit > span {
+  display: none;
+}
+
+.scale {
+  display: flex;
+  flex-flow: row wrap;
+  margin-right: 2px;
+  color: #555658;
+}
+
+.scale > div {
+  border-width: 1px;
+  border-color: #808285;
+  border-style: none none dotted dotted;
+  width: 25%;
+  height: 1em;
+  margin-top: 5px;
+  padding: 0 2px 17px 2px;
+  line-height: .9;
+}
+
+#end {
+  border-right:dotted 1px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#end > span {
+  display: block;
+}
+
+
 .bar {
+  width: 25%;
   float: right;
-  width:1px;
+  transition: all 1s ease;
   height: 50px;
   margin: 5px 0;
-  padding: 14px;
-  box-shadow: 5px 5px 5px darkgrey; 
+  padding: 14px 5px;
+  box-shadow: 5px 5px 5px darkgrey;
   color:white;
   font-weight: 500;
   border-radius: 5px;
+  overflow: hidden;
+}
+
+.smallBar {
+  padding: 0;
+}
+
+span.outsideText {
+  display: inline;
+  color:grey;
+  margin-left: 5px;
+  padding-top: 19px;
+  font-weight: bold;
 }
 
 #specialCase {
   padding-top: 3px;
 }
 
-#aggressive {
+#first {
   background:linear-gradient(to right, #753a88,#cc2b5e);
   width:7%;
 }
-#passiveAggressive {
+#second {
   background:linear-gradient(to right, #e65c00, #F9D423);
   width:23%;
 }
-#passive {
+#third {
   background:linear-gradient(to right, yellowgreen, yellow);
   width:44%;
 }
-#assertive {
+#fourth {
   background:linear-gradient(to right, #007991, #78ffd6);
   width:26%;
 }
@@ -397,17 +484,23 @@ ul.disabled li {
 }
 /*--Media Queries--*/
 
-@media (max-width: 550px) {
-  textarea, input[type="text"] {
-  min-width: 100%;
+@media (max-width: 560px) {
+  .bar {
+    font-weight: 400;
+    font-size: .7em;
+    padding-left: 2px;
+    padding-top: 17px;
   }
 
-  .drag_n_drop {
-  	width: 48%;
+  .smallBar {
+    padding: 0;
   }
 
-  .tiles ul {
-  width: 100%;
+  .wrong {
+    width: 100px;
+    padding:15px 5px;
+    font-size: .7em;
+  }
 }
 
 @media (-moz-touch-enabled: 1), (pointer:coarse) {
