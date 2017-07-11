@@ -9,7 +9,6 @@ html {
 
 * {
   font-family: 'Ubuntu', Tahoma, Geneva, sans-serif;
-  line-height: 1.4;
 /*  border:solid 1px black;*/
 }
 
@@ -18,6 +17,7 @@ body {
 }
 p {
   margin: .5em 0;
+  line-height: 1.4;
 }
 
 textarea, input[type="text"] {
