@@ -506,6 +506,10 @@ li.placeholder {
     padding:15px 5px;
     font-size: .7em;
   }
+  
+  .tiles ul {
+    width: 85%;
+  }
 
   .tiles li {
     font-size: .8em;
