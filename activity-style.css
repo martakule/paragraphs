@@ -12,9 +12,6 @@ html {
 /*  border:solid 1px black;*/
 }
 
-body {
-  background-color: #ebebe1;
-}
 p {
   margin: .5em 0;
   line-height: 1.4;
@@ -42,25 +39,24 @@ input[name="q"] {
 
 .bold {
   font-weight: 500;
-  color: #008cff;
 }
 
 /*--Colors and containers for the stylized header and footer--*/
 .mainColor {
   float:left;
-  background-color: #df0029;
+  background-color: #56bda2;
   width: 75%;
 }
 
 .darker {
   float:left;
-  background-color: #a9001f;
+  background-color: #2494a2;
   width: 15%;
 }
 
 .lighter {
   float:left;
-  background-color: #f63e5f;
+  background-color: #dbb13b;
   width: 10%;
 }
 
@@ -98,7 +94,7 @@ h1 {
 }
 
 h2 {
-  color: #df0029;
+  color: #dbb13b;
   margin: 7px 0;
   font-size: 1.4em;
 }
@@ -112,17 +108,20 @@ h3 {
 /*--Links--*/
 
 a {
-  font-weight: bold;
-  color: #008bd2;
+  font-weight: 500;
+  color: #56bda2;
   text-decoration: none;
+  border-bottom: 2px solid #dbb13b;
 }
 
 a:hover {
-  color:white;
-  background: linear-gradient(to right, #59b9ea, #2e7baa);
-  border-radius: 5px;
-  padding: 1px 3px;
+  border-bottom: none;
 }
+
+a:visited {
+  border-bottom: 2px solid #2d3258;
+}
+
 
 /*--Slide visibility for one-page navigation--*/
 .slide {
@@ -132,7 +131,7 @@ a:hover {
 
 /*--All buttons--*/
 button {
-  background-color: #a9001f;
+  background-color: #2d3258;
   color:white;
   display: inline-block;
   margin:7px;
@@ -190,7 +189,7 @@ li + p {
 
 .answer_button {
   margin:0;
-  background-color: #3d9ed8;
+  background-color: #444c8d;
 }
 
 /*-- Radio buttons and their labels stay in line--*/
@@ -447,8 +446,8 @@ div[data-cat='con'] li {
 .tiles li {
   min-height: 30px;
   display: block;
-  background-color: #e3f4fd;
-  border: 1px solid #008bd2;
+  background-color: #f1fdff;
+  border: 1px solid #2494a2;
   margin: 5px 0;
   border-radius: 5px;
   cursor:move;
@@ -471,6 +470,12 @@ li.green {
 
 ul.disabled li {
   cursor:default;
+}
+
+li.placeholder {
+  border:none;
+  border-radius: 0;
+  background-color: #fff48f;
 }
 
 /*--Classes used to show and hide all kinds of elements across pages,
@@ -500,6 +505,10 @@ ul.disabled li {
     width: 100px;
     padding:15px 5px;
     font-size: .7em;
+  }
+
+  .tiles li {
+    font-size: .8em;
   }
 }
 
