@@ -334,19 +334,19 @@ span.outsideText {
 }
 
 #first {
-  background:linear-gradient(to right, #753a88,#cc2b5e);
+  background:linear-gradient(to right,#22c1c3, #fdbb2d);
   width:7%;
 }
 #second {
-  background:linear-gradient(to right, #e65c00, #F9D423);
+  background:linear-gradient(to right, #3ca55c, #b5ac49);
   width:23%;
 }
 #third {
-  background:linear-gradient(to right, yellowgreen, yellow);
+  background:linear-gradient(to right, #185a9d, #43cea2);
   width:44%;
 }
 #fourth {
-  background:linear-gradient(to right, #007991, #78ffd6);
+  background:linear-gradient(to right, #45b649, #dce35b);
   width:26%;
 }
 
@@ -524,4 +524,3 @@ li.placeholder {
         cursor:default;
     }
 }
-
