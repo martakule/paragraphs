@@ -68,22 +68,22 @@
 			<div class="bars">
 
 	      <div class="unit">
-	        <div class="bar" id="first">17%</div>
+	        <div class="bar" id="first"><span>17%</span></div>
 	        <span></span>
 	      </div>
 
 	      <div class="unit">
-	        <div class="bar" id="second">23%</div>
+	        <div class="bar" id="second"><span>23%</span></div>
 	        <span></span>
 	      </div>
 
 	      <div class="unit">
-	        <div class="bar" id="third">34%</div>
+	        <div class="bar" id="third"><span>34%</span></div>
 	        <span></span>
 	      </div>
 
 	      <div class="unit">
-	        <div class="bar" id="fourth">26%</div>
+	        <div class="bar" id="fourth"><span>26%</span></div>
 	        <span></span>
 	      </div>
 
@@ -116,9 +116,11 @@
 			$("#generate").on("click", function(e){
 				e.preventDefault();
 
+// Remove classes in input fields before each input evaluation
 				$('.wrong').remove();
 				$(".wrongInput").removeClass("wrongInput");
 
+// Values object
 				var numbers = $("#input-form").find("input"),
 						values = {
 						"first":0,
@@ -128,7 +130,7 @@
 					},
 						valueList = [],
 						validator = 0;
-
+// Ensure input isn't empty, negative number, or a value other than number
 				for (var i = 0; i < numbers.length; i++) {
 					var userInput = numbers[i].value;
 					var id = numbers[i].id;
@@ -144,7 +146,7 @@
 
 				if (validator === numbers.length){
 
-
+// Remove classes added in previous rendering
 					$(".smallBar").removeClass("smallBar");
 					$(".outsideText").removeClass("outsideText");
 
@@ -152,36 +154,60 @@
 					values.second = valueList[1];
 					values.third = valueList[2];
 					values.fourth = valueList[3];
-
-					console.log(validator);
-				// Add up values of all answers
-			  var total = 0;
-			  for (var key in values) {
-			    if( values.hasOwnProperty(key) ) {
-			    	total = total + +values[key]
-			   	}
-
-		  	for (var key in values) {
-			    if( values.hasOwnProperty(key) ) {
-			    	var size = Math.round( (values[key]/total)*100 );
-	          var text = size.toString()+'%';
-
-					if (size<=7){
-	           $("#"+key).empty().css("width", size+'%').addClass("smallBar").next("span").addClass("outsideText").html(text);
-						}
-						 else {
-							$("#"+key).css("width", size+'%').html(text);
-						}
-			    }
-
-			  }
-
 				}
-			}
-		});
 
+// Get viewport width for bar behaviour
+        function hypotheticalUnitSize() {
+          if ( $(window).width() > 1100 ) {
+             return 998 }
+          else {
+            return ( $(window).width() ) - 100 }
+        }
 
+				renderStuff = function() {
 
+// Add up all input values
+					var total = 0;
+					for (var key in values) {
+					  total = total + parseInt(values[key]);
+					}
+
+					var fullWidth = hypotheticalUnitSize();
+					var size;
+
+// Get each bar's size as percentage of total
+				 	for (var key in values) {
+						size = Math.round( (values[key]/total)*100 );
+
+// Use size as width of bar div and text for label
+            var text = size.toString()+'%';
+            $("#"+key).css("width", size+'%').find("span").text(text);
+
+// Calculate each bar's width and put label outside if width less than 50px
+						var thisWidth = size/100*fullWidth;
+
+            if (thisWidth==0){
+              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px");
+              $("#"+key).css('padding','14px 0');
+            }
+
+            else if (thisWidth < 50 && thisWidth!==0){
+              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px").css('padding-left','0');
+            }
+
+            else {
+              $("#"+key+" span").removeClass('spanOutside').css('padding-left','10px');
+            }
+			 		}
+			 	}
+// Initial render of the chart on click
+        renderStuff();
+
+// Render of the chart on each window width resize
+	      $( window ).resize(function() {
+	        renderStuff();
+	      });
+			});
 		});
 
 	</script>

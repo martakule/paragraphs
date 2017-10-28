@@ -314,19 +314,12 @@ input.wrongInput {
   color:white;
   font-weight: 500;
   border-radius: 5px;
-  overflow: hidden;
 }
 
-.smallBar {
-  padding: 0;
-}
-
-span.outsideText {
-  display: inline;
-  color:grey;
-  margin-left: 5px;
-  padding-top: 19px;
-  font-weight: bold;
+.spanOutside {
+  position: relative;
+  display: block;
+  color: grey;
 }
 
 #specialCase {
@@ -346,7 +339,7 @@ span.outsideText {
   width:34%;
 }
 #fourth {
-  background:linear-gradient(to right, #24FE41, #FDFC47);
+  background:linear-gradient(to right, #FDFC47, #24FE41);
   width:26%;
 }
 
@@ -490,20 +483,10 @@ li.placeholder {
 /*--Media Queries--*/
 
 @media (max-width: 560px) {
-  .bar {
-    font-weight: 400;
-    font-size: .7em;
-    padding-left: 2px;
-    padding-top: 17px;
-  }
-
-  .smallBar {
-    padding: 0;
-  }
 
   .wrong {
     width: 100px;
-    padding:15px 5px;
+    padding:10px 5px;
     font-size: .7em;
   }
 
