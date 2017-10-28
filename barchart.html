@@ -177,7 +177,7 @@
 
 // Get each bar's size as percentage of total
 				 	for (var key in values) {
-						size = Math.round( (values[key]/total)*100 );
+						size = Math.floor( (values[key]/total)*100 );
 
 // Use size as width of bar div and text for label
             var text = size.toString()+'%';
@@ -186,9 +186,18 @@
 // Calculate each bar's width and put label outside if width less than 50px
 						var thisWidth = size/100*fullWidth;
 
+						console.log("full"+fullWidth);
+						console.log("this"+thisWidth);
+
+// If the value is 0, don't show the bar at all
             if (thisWidth==0){
               $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px");
               $("#"+key).css('padding','14px 0');
+            }
+
+// If 100%, make the bar slightly shorter to fit in the box
+            else if (thisWidth==fullWidth){
+            	$("#"+key).css("width", '99.6%')
             }
 
             else if (thisWidth < 50 && thisWidth!==0){
