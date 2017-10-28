@@ -206,7 +206,7 @@ label + li {
   margin-top: 1.2em;
 }
 
-/*-- bar chart made of divs for 01 How Do You Communicate --*/
+/*-- Bar chart made of divs for 01 How Do You Communicate --*/
 
 #input-form input[type="text"] {
   height: 50px;
@@ -334,19 +334,19 @@ span.outsideText {
 }
 
 #first {
-  background:linear-gradient(to right,#22c1c3, #fdbb2d);
-  width:7%;
+  background:linear-gradient(to right, #f7b733, #fc4a1a);
+  width:17%;
 }
 #second {
-  background:linear-gradient(to right, #3ca55c, #b5ac49);
+  background:linear-gradient(to right, #43C6AC, #191654);
   width:23%;
 }
 #third {
-  background:linear-gradient(to right, #185a9d, #43cea2);
-  width:44%;
+  background:linear-gradient(to right, #cc2b5e, #753a88);
+  width:34%;
 }
 #fourth {
-  background:linear-gradient(to right, #45b649, #dce35b);
+  background:linear-gradient(to right, #24FE41, #FDFC47);
   width:26%;
 }
 
@@ -437,7 +437,7 @@ div[data-cat='con'] li {
   font-weight: bold;
 }
 
-/* -- Draggins and sorting for 06 Paragraphy Pile-up -- */
+/* -- Dragging and sorting for 06 Paragraphy Pile-up -- */
 
 .tiles ul {
   padding: 0 0 7px 0;
@@ -506,7 +506,7 @@ li.placeholder {
     padding:15px 5px;
     font-size: .7em;
   }
-  
+
   .tiles ul {
     width: 85%;
   }
