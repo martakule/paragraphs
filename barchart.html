@@ -140,82 +140,88 @@
 					}
 					else {
 						validator++;
-						valueList.push(userInput);
+						valueList.push(parseInt(userInput));
 					}
 				}
 
-				if (validator === numbers.length){
+// Ensure not all values are zeros
+				function getTotal(total, num) {
+				    return total + num;
+				}
+				function areAllZeros(item) {
+				  return valueList.reduce(getTotal);
+				}
 
-// Remove classes added in previous rendering
-					$(".smallBar").removeClass("smallBar");
-					$(".outsideText").removeClass("outsideText");
+  			if (areAllZeros()===0) {
+  				alert("Pick at least one number larger than zero.");
+  			}
+
+	// Render a chart only if all values are of correct type
+				else if (validator === numbers.length && areAllZeros()!=0){
 
 					values.first = valueList[0];
 					values.second = valueList[1];
 					values.third = valueList[2];
 					values.fourth = valueList[3];
-				}
+	// Get viewport width for bar behaviour
+	        function hypotheticalUnitSize() {
+	          if ( $(window).width() > 1100 ) {
+	             return 998 }
+	          else {
+	            return ( $(window).width() ) - 100 }
+	        }
 
-// Get viewport width for bar behaviour
-        function hypotheticalUnitSize() {
-          if ( $(window).width() > 1100 ) {
-             return 998 }
-          else {
-            return ( $(window).width() ) - 100 }
-        }
+					renderStuff = function() {
 
-				renderStuff = function() {
+	// Add up all input values
+						var total = 0;
+						for (var key in values) {
+						  total = total + +values[key];
+						}
 
-// Add up all input values
-					var total = 0;
-					for (var key in values) {
-					  total = total + parseInt(values[key]);
-					}
+						var fullWidth = hypotheticalUnitSize();
+						var size;
 
-					var fullWidth = hypotheticalUnitSize();
-					var size;
+	// Get each bar's size as percentage of total
+					 	for (var key in values) {
+							size = Math.floor( (values[key]/total)*100 );
 
-// Get each bar's size as percentage of total
-				 	for (var key in values) {
-						size = Math.floor( (values[key]/total)*100 );
+	// Use size as width of bar div and text for label
+	            var text = size.toString()+'%';
+	            $("#"+key).css("width", size+'%').find("span").text(text);
 
-// Use size as width of bar div and text for label
-            var text = size.toString()+'%';
-            $("#"+key).css("width", size+'%').find("span").text(text);
+	// Calculate each bar's width and put label outside if width less than 50px
+							var thisWidth = size/100*fullWidth;
 
-// Calculate each bar's width and put label outside if width less than 50px
-						var thisWidth = size/100*fullWidth;
 
-						console.log("full"+fullWidth);
-						console.log("this"+thisWidth);
+	// If the value is 0, don't show the bar at all
+	            if (thisWidth==0){
+	              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px");
+	              $("#"+key).css('padding','14px 0');
+	            }
 
-// If the value is 0, don't show the bar at all
-            if (thisWidth==0){
-              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px");
-              $("#"+key).css('padding','14px 0');
-            }
+	// If 100%, make the bar slightly shorter to fit in the box
+	            else if (thisWidth==fullWidth){
+	            	$("#"+key).css("width", '99.6%')
+	            }
 
-// If 100%, make the bar slightly shorter to fit in the box
-            else if (thisWidth==fullWidth){
-            	$("#"+key).css("width", '99.6%')
-            }
+	            else if (thisWidth < 50 && thisWidth!==0){
+	              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px").css('padding-left','0');
+	            }
 
-            else if (thisWidth < 50 && thisWidth!==0){
-              $("#"+key+" span").addClass('spanOutside').css('left',(thisWidth+7)+"px").css('padding-left','0');
-            }
-
-            else {
-              $("#"+key+" span").removeClass('spanOutside').css('padding-left','10px');
-            }
-			 		}
-			 	}
-// Initial render of the chart on click
-        renderStuff();
-
-// Render of the chart on each window width resize
-	      $( window ).resize(function() {
+	            else {
+	              $("#"+key+" span").removeClass('spanOutside').css('padding-left','10px');
+	            }
+				 		}
+				 	}
+	// Initial render of the chart on click
 	        renderStuff();
-	      });
+
+	// Render of the chart on each window width resize
+		      $( window ).resize(function() {
+		        renderStuff();
+		      });
+				}
 			});
 		});
 
